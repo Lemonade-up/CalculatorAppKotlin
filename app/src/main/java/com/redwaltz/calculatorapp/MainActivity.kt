@@ -25,7 +25,8 @@ class MainActivity : ComponentActivity() {
 
     }
     fun allClearAction(view: View) {
-
+        workingsTV.text = ""
+        resultsTV.text = ""
     }
     fun backspaceAction(view: View) {
 
