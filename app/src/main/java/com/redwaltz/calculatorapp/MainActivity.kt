@@ -14,17 +14,21 @@ import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
 
 class MainActivity : ComponentActivity() {
 
-    private var canAddOperation = false
+    private var canOperation = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent(R.layout.activity_main)
     }
 
     fun numberAction(view: View) {
-
+        if (view is Button) {
+            workingTV.append(view.text)
+        }
     }
     fun operatorAction(view: View) {
-
+        if (view is Button && canOperation) {
+            workingTV.append(view.text)
+        }
     }
     fun allClearAction(view: View) {
         workingTV.text = ""
