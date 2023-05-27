@@ -14,7 +14,8 @@ import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
 
 class MainActivity : ComponentActivity() {
 
-    private var canOperation = false
+    private var canAddOperation = false
+    private var canAddDecimal = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent(R.layout.activity_main)
@@ -22,12 +23,21 @@ class MainActivity : ComponentActivity() {
 
     fun numberAction(view: View) {
         if (view is Button) {
-            workingTV.append(view.text)
+            if (view.text == "" ) {
+                if (canAddDecimal)
+                    workingTV.append(view.text)
+                canAddDecimal = false
+
+            }
+            else
+                workingTV.append(view.text)
+            canAddOperation = true
         }
     }
     fun operatorAction(view: View) {
-        if (view is Button && canOperation) {
+        if (view is Button && canAddOperation) {
             workingTV.append(view.text)
+            canAddOperation = false
         }
     }
     fun allClearAction(view: View) {
