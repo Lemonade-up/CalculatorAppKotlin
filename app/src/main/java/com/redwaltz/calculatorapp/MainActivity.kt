@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
 
 class MainActivity : ComponentActivity() {
+
+    private var canAddOperation = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent(R.layout.activity_main)
@@ -25,11 +27,13 @@ class MainActivity : ComponentActivity() {
 
     }
     fun allClearAction(view: View) {
-        workingsTV.text = ""
-        resultsTV.text = ""
+        workingTV.text = ""
+        resultTV.text = ""
     }
     fun backspaceAction(view: View) {
-
+        val length = workingTV.length()
+        if (length > 0)
+            workingTV.text = workingTV.length.subSequence(0, length - 1)
     }
     fun equateAction(view: View) {
 
