@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.CalculatorApp" parent="Theme.AppCompat">
 
-    <style name="Theme.CalculatorApp" parent="android:Theme.Material.Light.NoActionBar" />
+        <item name="android:colorPrimary">@color/blue</item>
+        <item name="android:colorAccent">@color/almostBlack</item>
+        <item name="android:color">@color/white</item>
+
+        <item name="android:statusBarColor" >?attr/colorAccent</item>
+
+    </style>
 </resources>
