@@ -15,32 +15,22 @@ import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            CalculatorAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
+        setContent(R.layout.activity_main)
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    fun numberAction(view: View) {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CalculatorAppTheme {
-        Greeting("Android")
+    }
+    fun operatorAction(view: View) {
+
+    }
+    fun allClearAction(view: View) {
+
+    }
+    fun backspaceAction(view: View) {
+
+    }
+    fun equateAction(view: View) {
+
     }
 }
