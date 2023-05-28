@@ -87,5 +87,9 @@ class MainActivity : ComponentActivity() {
     private fun addToInputText(binding: ActivityMainBinding,buttonValue: String): String {
         return "${binding.inputTV.text}$buttonValue"
     }
-
+    private fun getInputExpression(): String{
+        var expression = binding.inputTV.text.replace(Regex("÷"),"/")
+            expression = expression.replace(Regex("×"),"*")
+        return expression
+    }
 }
