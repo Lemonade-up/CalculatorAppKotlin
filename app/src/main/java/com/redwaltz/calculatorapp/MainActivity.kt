@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.redwaltz.calculatorapp.databinding.ActivityMainBinding
 import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
 import org.mariuszgromada.math.mxparser.Expression
+import java.text.DecimalFormat
 
 class MainActivity : ComponentActivity() {
 
@@ -23,81 +24,91 @@ class MainActivity : ComponentActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.clearButton.setOnClickListener{
+        binding.clearButton.setOnClickListener {
             binding.inputTV.text = ""
             binding.outputTV.text = ""
         }
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             val length = binding.inputTV.length()
             if (length > 0)
-                binding.inputTV.text = binding.inputTV.text.subSequence(0, length-1)
+                binding.inputTV.text = binding.inputTV.text.subSequence(0, length - 1)
         }
-        binding.button0.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"0")
+        binding.button0.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "0")
         }
-        binding.button1.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"1")
+        binding.button1.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "1")
         }
-        binding.button2.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"2")
+        binding.button2.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "2")
         }
-        binding.button3.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"3")
+        binding.button3.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "3")
         }
-        binding.button4.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"4")
+        binding.button4.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "4")
         }
-        binding.button5.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"5")
+        binding.button5.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "5")
         }
-        binding.button6.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"6")
+        binding.button6.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "6")
         }
-        binding.button7.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"7")
+        binding.button7.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "7")
         }
-        binding.button8.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"8")
+        binding.button8.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "8")
         }
-        binding.button9.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"9")
+        binding.button9.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "9")
         }
-        binding.buttonPeriod.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,".")
+        binding.buttonPeriod.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, ".")
         }
 
-        binding.addButton.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"+")
+        binding.addButton.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "+")
         }
-        binding.minusButton.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"-")
+        binding.minusButton.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "-")
         }
-        binding.multiButton.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"×")
+        binding.multiButton.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "×")
         }
-        binding.divideButton.setOnClickListener{
-            binding.inputTV.text = addToInputText(binding,"÷")
+        binding.divideButton.setOnClickListener {
+            binding.inputTV.text = addToInputText(binding, "÷")
         }
-        binding.equalButton.setOnClickListener{
-            showResult()
+        binding.equalButton.setOnClickListener {
+            showResult(binding)
         }
 
 
     }
 
-    private fun addToInputText(buttonValue: String): String {
+    private fun addToInputText(binding: ActivityMainBinding, buttonValue: String): String {
         return "${binding.inputTV.text}$buttonValue"
     }
-    private fun getInputExpression(): String{
-        var expression = binding.inputTV.text.replace(Regex("÷"),"/")
-            expression = expression.replace(Regex("×"),"*")
+
+    private fun getInputExpression(binding: ActivityMainBinding): String {
+        var expression = binding.inputTV.text.replace(Regex("÷"), "/")
+        expression = expression.replace(Regex("×"), "*")
         return expression
     }
-    private fun showResult(){
+
+    private fun showResult(binding: ActivityMainBinding) {
 
         try {
-            val expression = getInputExpression()
-            val result = Expression(expression)
+            val expression = getInputExpression(binding)
+            val result = Expression(expression).calculate()
+            if (result.isNaN()) {
+                binding.outputTV.text = "Error"
+            } else {
+                binding.outputTV.text = DecimalFormat("0.######").format(result).toString()
+            }
+        } catch (e: Exception) {
+
+
         }
     }
 }
