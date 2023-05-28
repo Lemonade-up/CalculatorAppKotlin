@@ -53,20 +53,22 @@
         <Button
             style="@style/buttonNumber"
             android:textColor="@color/blue"
-            android:onClick="allClearAction"
+            android:id="@+id/clearButton"
             android:text="AC"/>
         <Button
             style="@style/buttonNumber"
             android:textColor="@color/blue"
-            android:onClick="backSpaceAction"
+            android:id="@+id/backButton"
             android:text="⌫"/>
         <Button
             style="@style/buttonNumber"
-            android:text="+/-"
+            android:text=""
             android:textColor="@color/blue"/>
         <Button
             style="@style/buttonOperator"
-            android:text="/"/>
+            android:text="/"
+            android:id="@+id/divideButton"/>
+
 
     </LinearLayout>
 
@@ -84,7 +86,8 @@
             android:text="9" />
         <Button
             style="@style/buttonOperator"
-            android:text="x"/>
+            android:text="x"
+            android:id="@+id/multiButton"/>
 
     </LinearLayout>
 
@@ -102,7 +105,9 @@
             android:text="6" />
         <Button
             style="@style/buttonOperator"
-            android:text="-"/>
+            android:text="-"
+            android:id="@+id/minusButton"/>
+
 
     </LinearLayout>
 
@@ -120,7 +125,8 @@
             android:text="3" />
         <Button
             style="@style/buttonOperator"
-            android:text="+"/>
+            android:text="+"
+            android:id="@+id/addButton"/>
 
     </LinearLayout>
 
@@ -139,8 +145,8 @@
             android:background="@color/lblue"
             android:textColor="@color/blue"
             android:textSize="40sp"
-            android:onClick="equalsAction"
-            android:text="=" />
+            android:text="="
+            android:id="@+id/equalButton"/>
 
     </LinearLayout>
 </LinearLayout>

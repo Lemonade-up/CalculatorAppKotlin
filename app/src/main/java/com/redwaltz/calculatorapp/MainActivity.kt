@@ -20,39 +20,22 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val view = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(view.root)
-    }
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-    fun numberAction(view: View) {
-        if (view is Button) {
-            if (view.text == "" ) {
-                if (canAddDecimal)
-                    workingTV.append(view.text)
-                canAddDecimal = false
-
-            }
-            else
-                workingTV.append(view.text)
-            canAddOperation = true
+        binding.clearButton.setOnClickListener{
+            binding.inputTV.text = ""
+            binding.outputTV.text = ""
         }
-    }
-    fun operatorAction(view: View) {
-        if (view is Button && canAddOperation) {
-            workingTV.append(view.text)
-            canAddOperation = false
+        binding.backButton.setOnClickListener{
+            val length = binding.inputTV.length()
+            if (length > 0)
+                binding.inputTV.text = binding.inputTV.text.subSequence(0, length-1)
         }
-    }
-    fun allClearAction(view: View) {
-        workingTV.text = ""
-        resultTV.text = ""
-    }
-    fun backspaceAction(view: View) {
-        val length = workingTV.length()
-        if (length > 0)
-            workingTV.text = workingTV.length.subSequence(0, length - 1)
-    }
-    fun equateAction(view: View) {
 
     }
+
+
+
 }
