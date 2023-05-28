@@ -107,7 +107,7 @@ class MainActivity : ComponentActivity() {
                 binding.outputTV.text = DecimalFormat("0.######").format(result).toString()
             }
         } catch (e: Exception) {
-
+            binding.outputTV.text = ""
 
         }
     }
