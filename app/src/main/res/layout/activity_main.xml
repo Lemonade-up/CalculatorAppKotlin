@@ -58,12 +58,9 @@
         <Button
             style="@style/buttonNumber"
             android:textColor="@color/blue"
+            android:layout_weight="2"
             android:id="@+id/backButton"
             android:text="⌫"/>
-        <Button
-            style="@style/buttonNumber"
-            android:text=""
-            android:textColor="@color/blue"/>
         <Button
             style="@style/buttonOperator"
             android:text="/"

@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.redwaltz.calculatorapp.databinding.ActivityMainBinding
 import com.redwaltz.calculatorapp.ui.theme.CalculatorAppTheme
+import org.mariuszgromada.math.mxparser.Expression
 
 class MainActivity : ComponentActivity() {
 
@@ -84,12 +85,19 @@ class MainActivity : ComponentActivity() {
 
     }
 
-    private fun addToInputText(binding: ActivityMainBinding,buttonValue: String): String {
+    private fun addToInputText(buttonValue: String): String {
         return "${binding.inputTV.text}$buttonValue"
     }
     private fun getInputExpression(): String{
         var expression = binding.inputTV.text.replace(Regex("÷"),"/")
             expression = expression.replace(Regex("×"),"*")
         return expression
+    }
+    private fun showResult(){
+
+        try {
+            val expression = getInputExpression()
+            val result = Expression(expression)
+        }
     }
 }
